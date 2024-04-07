@@ -18,6 +18,14 @@ jobs:
       with:
         python-version: '3.9'
 
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -55,7 +63,7 @@ jobs:
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         region: ap-south-1
         application_name: UIUXStudio
-        environment_name: UIUXStudio-env
+        environment_name: UIUXStudio-env-4
         version_label: UIUXStudio-${{ github.sha }}
         bucket_name: uiux-deploy
         bucket_key: docker-image-${{ github.sha }}.zip

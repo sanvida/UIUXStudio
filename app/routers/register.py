@@ -8,6 +8,7 @@ router = APIRouter()
 
 @router.post(
     "/register",
+    summary="Register a new user",
     response_model=None,
     status_code=status.HTTP_201_CREATED
 )
@@ -16,7 +17,16 @@ def register(
     user_manager: UserManager = Depends(get_user_manager),
 ):
 
-        # Check if user already exists
+    """
+    Register a new user.
+
+    Parameters:
+    - user (UserCreate): The user data to be registered.
+
+    Returns:
+    - User: The created user.
+    """
+
     db_user = user_manager.get_user_by_username(user.username)
     if db_user:
         raise HTTPException(

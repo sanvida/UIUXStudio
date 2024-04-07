@@ -8,13 +8,26 @@ router = APIRouter()
 
 
 @router.post(
-    "/login"
+    "/login",
+    summary="Login to get access token",
+    response_description="Logged in successfully",
+    tags=["Authentication"]
 )
 async def login_for_access_token(
     response: Response,
     form_data: OAuth2PasswordRequestForm = Depends(),
     user_manager: UserManager = Depends(get_user_manager)
 ):
+    """
+    Endpoint to authenticate users and get an access token for subsequent requests.
+    
+    Parameters:
+    - form_data (OAuth2PasswordRequestForm): The username and password for authentication.
+    
+    Returns:
+    - dict: A message indicating successful login.
+    """
+    ...
     user = user_manager.authenticate_user(form_data.username, form_data.password)
 
     if not user:
@@ -46,8 +59,19 @@ async def login_for_access_token(
 
 
 
-@router.post("/logout")
+@router.post(
+    "/logout",
+    summary="Logout and remove access token cookie",
+    response_description="Logged out",
+    tags=["Authentication"]
+    )
 async def logout(response: Response):
+    """
+    Endpoint to logout and remove the access token cookie.
+    
+    Returns:
+    - dict: A message indicating successful logout.
+    """
     response.delete_cookie(
         key="access_token",
         path="/",
