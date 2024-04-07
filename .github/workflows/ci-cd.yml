@@ -52,6 +52,9 @@ jobs:
         push: true
         tags: sanvidatulam/uiux:latest
 
+    - name: Zip Dockerrun.aws.json
+      run: zip deploy.zip Dockerrun.aws.json
+
     - name: Deploy to AWS Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v18
       with:
@@ -61,4 +64,4 @@ jobs:
         application_name: UIUXStudio
         environment_name: UIUXStudio-env-4
         version_label: UIUXStudio-${{ github.sha }}
-        deployment_package: sanvidatulam/uiux:latest
+        deployment_package: deploy.zip
