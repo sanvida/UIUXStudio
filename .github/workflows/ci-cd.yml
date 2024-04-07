@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  Install-dependencies:
     runs-on: ubuntu-latest
 
     steps:
