@@ -61,4 +61,4 @@ jobs:
         application_name: UIUXStudio
         environment_name: UIUXStudio-env-4
         version_label: UIUXStudio-${{ github.sha }}
-        deployment-package: uiux-deploy/docker-image-${{ github.sha }}.zip
+        deployment_package: uiux-deploy/docker-image-${{ github.sha }}.zip
