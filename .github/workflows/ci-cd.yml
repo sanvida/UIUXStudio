@@ -64,5 +64,5 @@ jobs:
         application_name: UIUXStudio
         environment_name: UIUXStudio-env-4
         version_label: UIUXStudio-${{ github.sha }}
-        bucket: uiux-deploy
+        existing_bucket_name: uiux-deploy
         deployment_package: deploy.zip
