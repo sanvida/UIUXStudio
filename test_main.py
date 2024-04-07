@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
-from main import app
+import main
 
-client = TestClient(app)
+client = TestClient(main.app)
 
 def test_read_main():
     response = client.get("/")  # Make a request to the root endpoint
