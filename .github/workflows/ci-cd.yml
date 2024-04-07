@@ -52,6 +52,14 @@ jobs:
         push: true
         tags: sanvidatulam/uiux:latest
 
+    - name: Upload Deployment Package to S3
+      run: |
+        aws s3 cp ./path/to/your/deployment-package.zip s3://uiux-deploy/docker-image-${{ github.sha }}.zip
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ap-south-1
+
     - name: Deploy to AWS Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v18
       with:
